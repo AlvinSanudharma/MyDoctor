@@ -8,16 +8,25 @@ import {
   RatedDoctor,
 } from '../../components';
 import {colors, fonts} from '../../utils';
-import {JSONCategoryDoctor} from '../../assets';
+import {
+  JSONCategoryDoctor,
+  DummyDoctor1,
+  DummyDoctor2,
+  DummyDoctor3,
+} from '../../assets';
 
-const Doctor = () => {
+const Doctor = ({navigation}) => {
   return (
     <View style={styles.page}>
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.wrapperSection}>
             <Gap height={30} />
-            <HomeProfile />
+            <HomeProfile
+              onPress={() => {
+                navigation.navigate('UserProfile');
+              }}
+            />
             <Gap height={30} />
             <Text style={styles.welcome}>
               Mau konsultasi dengan siapa hari ini?
@@ -30,7 +39,13 @@ const Doctor = () => {
                 <Gap width={32} />
                 {JSONCategoryDoctor.data.map(item => {
                   return (
-                    <DoctorCategory key={item.id} category={item.category} />
+                    <DoctorCategory
+                      key={item.id}
+                      category={item.category}
+                      onPress={() => {
+                        navigation.navigate('ChooseDoctor');
+                      }}
+                    />
                   );
                 })}
                 <Gap width={22} />
@@ -41,9 +56,24 @@ const Doctor = () => {
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
             <Gap height={16} />
-            <RatedDoctor />
-            <RatedDoctor />
-            <RatedDoctor />
+            <RatedDoctor
+              name="Alexa Rachel"
+              desc="Pediatrician"
+              avatar={DummyDoctor1}
+              onPress={() => navigation.navigate('DoctorProfile')}
+            />
+            <RatedDoctor
+              name="Sunny Frank"
+              desc="Dentist"
+              avatar={DummyDoctor2}
+              onPress={() => navigation.navigate('DoctorProfile')}
+            />
+            <RatedDoctor
+              name="Poe Min"
+              desc="Podiatrist"
+              avatar={DummyDoctor3}
+              onPress={() => navigation.navigate('DoctorProfile')}
+            />
             <Gap height={30} />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
