@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Header, Input, Button, Gap, Loading} from '../../components';
-import {colors, useForm, storeData, getData} from '../../utils';
+import {colors, useForm, storeData, getData, showError} from '../../utils';
 import {Firebase} from '../../config';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 
@@ -42,12 +42,7 @@ const Register = ({navigation}) => {
       .catch(error => {
         const errorMessage = error.message;
         setLoading(false);
-        showMessage({
-          message: errorMessage,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(error.message);
         console.log('error: ', error);
       });
   };

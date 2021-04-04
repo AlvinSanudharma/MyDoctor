@@ -1,10 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground} from 'react-native';
+import {useSelector} from 'react-redux';
 import {ILLogo, ILGetStarted} from '../../assets';
 import {Button, Gap} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const GetStarted = ({navigation}) => {
+  const globalState = useSelector(state => state);
+
   return (
     <ImageBackground source={ILGetStarted} style={styles.page}>
       <View>
