@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {
   DoctorCategory,
@@ -7,7 +7,8 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components';
-import {colors, fonts, getData} from '../../utils';
+import {colors, fonts, getData, showError} from '../../utils';
+import {Firebase} from '../../config';
 import {
   JSONCategoryDoctor,
   DummyDoctor1,
@@ -16,10 +17,20 @@ import {
 } from '../../assets';
 
 const Doctor = ({navigation}) => {
+  const [news, setNews] = useState([]);
   useEffect(() => {
-    getData('user').then(res => {
-      console.log('user data: ', res);
-    });
+    Firebase.database()
+      .ref('news/')
+      .once('value')
+      .then(res => {
+        console.log('data: ', res.val());
+        if (res.val()) {
+          setNews(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
   }, []);
 
   return (
@@ -84,9 +95,16 @@ const Doctor = ({navigation}) => {
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
           <Gap height={16} />
-          <NewsItem />
-          <NewsItem />
-          <NewsItem />
+          {news.map(item => {
+            return (
+              <NewsItem
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                image={item.image}
+              />
+            );
+          })}
           <Gap height={30} />
         </ScrollView>
       </View>
