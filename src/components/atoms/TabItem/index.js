@@ -1,25 +1,25 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {
-  IcDoctor,
-  IcDoctorActive,
-  IcHospitals,
-  IcHospitalsActive,
-  IcMessages,
-  IcMessagesActive,
+  IconDoctor,
+  IconDoctorActive,
+  IconHospitals,
+  IconHospitalsActive,
+  IconMessages,
+  IconMessagesActive,
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const TabItem = ({title, active, onPress, onLongPress}) => {
   const Icon = () => {
     if (title === 'Doctor') {
-      return active ? <IcDoctorActive /> : <IcDoctor />;
+      return active ? <IconDoctorActive /> : <IconDoctor />;
     } else if (title === 'Messages') {
-      return active ? <IcMessagesActive /> : <IcMessages />;
+      return active ? <IconMessagesActive /> : <IconMessages />;
     } else if (title === 'Hospitals') {
-      return active ? <IcHospitalsActive /> : <IcHospitals />;
+      return active ? <IconHospitalsActive /> : <IconHospitals />;
     } else {
-      return <IcDoctor />;
+      return <IconDoctor />;
     }
   };
   return (

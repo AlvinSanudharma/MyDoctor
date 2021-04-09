@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {IcStar} from '../../../assets';
+import {IconStar} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const RatedDoctor = ({onPress, name, desc, avatar}) => {
@@ -12,11 +12,11 @@ const RatedDoctor = ({onPress, name, desc, avatar}) => {
         <Text style={styles.category}>{desc}</Text>
       </View>
       <View style={styles.rate}>
-        <IcStar />
-        <IcStar />
-        <IcStar />
-        <IcStar />
-        <IcStar />
+        <IconStar />
+        <IconStar />
+        <IconStar />
+        <IconStar />
+        <IconStar />
       </View>
     </TouchableOpacity>
   );

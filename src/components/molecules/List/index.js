@@ -1,26 +1,26 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
-  IcNext,
-  IcEditProfile,
-  Iclanguage,
-  IcRate,
-  IcHelp,
+  IconNext,
+  IconEditProfile,
+  Iconlanguage,
+  IconRate,
+  IconHelp,
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const List = ({profile, name, desc, type, onPress, icon}) => {
   const Icon = () => {
     if (icon === 'edit-profile') {
-      return <IcEditProfile />;
+      return <IconEditProfile />;
     } else if (icon === 'language') {
-      return <Iclanguage />;
+      return <Iconlanguage />;
     } else if (icon === 'rate') {
-      return <IcRate />;
+      return <IconRate />;
     } else if (icon === 'help') {
-      return <IcHelp />;
+      return <IconHelp />;
     } else {
-      return <IcEditProfile />;
+      return <IconEditProfile />;
     }
   };
 
@@ -31,7 +31,7 @@ const List = ({profile, name, desc, type, onPress, icon}) => {
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.desc}>{desc}</Text>
       </View>
-      {type === 'next' && <IcNext />}
+      {type === 'next' && <IconNext />}
     </TouchableOpacity>
   );
 };

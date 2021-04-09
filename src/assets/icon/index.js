@@ -2,38 +2,38 @@ import IconBackDark from './ic-back-dark.svg';
 import IconBackLight from './ic-back-light.svg';
 import IconAddPhoto from './ic-add-photo.svg';
 import IconRemovePhoto from './ic-remove-photo.svg';
-import IcDoctor from './ic-doctor.svg';
-import IcDoctorActive from './ic-doctor-active.svg';
-import IcMessages from './ic-messages.svg';
-import IcMessagesActive from './ic-messages-active.svg';
-import IcHospitals from './ic-hospitals.svg';
-import IcHospitalsActive from './ic-hospitals-active.svg';
-import IcStar from './ic-star.svg';
-import IcNext from './ic-next.svg';
-import IcSendDark from './ic-send-dark.svg';
-import IcSendLight from './ic-send-light.svg';
-import IcEditProfile from './ic-edit-profile.svg';
-import Iclanguage from './ic-language.svg';
-import IcRate from './ic-rate.svg';
-import IcHelp from './ic-help.svg';
+import IconDoctor from './ic-doctor.svg';
+import IconDoctorActive from './ic-doctor-active.svg';
+import IconMessages from './ic-messages.svg';
+import IconMessagesActive from './ic-messages-active.svg';
+import IconHospitals from './ic-hospitals.svg';
+import IconHospitalsActive from './ic-hospitals-active.svg';
+import IconStar from './ic-star.svg';
+import IconNext from './ic-next.svg';
+import IconSendDark from './ic-send-dark.svg';
+import IconSendLight from './ic-send-light.svg';
+import IconEditProfile from './ic-edit-profile.svg';
+import Iconlanguage from './ic-language.svg';
+import IconRate from './ic-rate.svg';
+import IconHelp from './ic-help.svg';
 
 export {
   IconBackDark,
   IconBackLight,
   IconAddPhoto,
   IconRemovePhoto,
-  IcDoctor,
-  IcDoctorActive,
-  IcMessages,
-  IcMessagesActive,
-  IcHospitals,
-  IcHospitalsActive,
-  IcStar,
-  IcNext,
-  IcSendDark,
-  IcSendLight,
-  IcEditProfile,
-  Iclanguage,
-  IcRate,
-  IcHelp,
+  IconDoctor,
+  IconDoctorActive,
+  IconMessages,
+  IconMessagesActive,
+  IconHospitals,
+  IconHospitalsActive,
+  IconStar,
+  IconNext,
+  IconSendDark,
+  IconSendLight,
+  IconEditProfile,
+  Iconlanguage,
+  IconRate,
+  IconHelp,
 };
