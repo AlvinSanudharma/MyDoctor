@@ -28,7 +28,10 @@ const Doctor = ({navigation}) => {
       .once('value')
       .then(res => {
         if (res.val()) {
-          setCategoryDoctor(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+
+          setCategoryDoctor(filterData);
         }
       })
       .catch(err => {
@@ -68,7 +71,10 @@ const Doctor = ({navigation}) => {
       .once('value')
       .then(res => {
         if (res.val()) {
-          setNews(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+
+          setNews(filterData);
         }
       })
       .catch(err => {
@@ -103,7 +109,7 @@ const Doctor = ({navigation}) => {
                       key={item.id}
                       category={item.category}
                       onPress={() => {
-                        navigation.navigate('ChooseDoctor');
+                        navigation.navigate('ChooseDoctor', item);
                       }}
                     />
                   );
@@ -121,9 +127,9 @@ const Doctor = ({navigation}) => {
                 <RatedDoctor
                   key={doctor.id}
                   name={doctor.data.fullName}
-                  desc={doctor.data.proffesion}
+                  desc={doctor.data.profession}
                   avatar={{uri: doctor.data.photo}}
-                  onPress={() => navigation.navigate('DoctorProfile')}
+                  onPress={() => navigation.navigate('DoctorProfile', doctor)}
                 />
               );
             })}
