@@ -1,44 +1,66 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {List} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, getData} from '../../utils';
+import {Firebase} from '../../config';
 import {DummyDoctor4, DummyDoctor5, DummyDoctor6} from '../../assets';
 
 const Messages = ({navigation}) => {
-  const [doctors, setDoctors] = useState([
-    {
-      id: 1,
-      profile: DummyDoctor4,
-      name: 'Alexander Jannie',
-      desc: 'Baik ibu, terima kasih banyak atas wakt...',
-    },
-    {
-      id: 2,
-      profile: DummyDoctor5,
-      name: 'Nairobi Putri Hayza',
-      desc: 'Oh tentu saja tidak karena jeruk it...',
-    },
-    {
-      id: 3,
-      profile: DummyDoctor6,
-      name: 'John McParker Steve',
-      desc: 'Oke menurut pak dokter bagaimana unt...',
-    },
-  ]);
+  const [user, setUser] = useState({});
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    getDataUser();
+    const rootDB = Firebase.database().ref();
+    const urlHistory = `messages/${user.uid}/`;
+    const messagesDB = rootDB.child(urlHistory);
+
+    messagesDB.on('value', async snapshot => {
+      if (snapshot.val()) {
+        const oldData = snapshot.val();
+        const data = [];
+
+        const promises = await Object.keys(oldData).map(async key => {
+          const urlUidDoctor = `doctors/${oldData[key].uidPartner}`;
+          const detailDoctor = await rootDB.child(urlUidDoctor).once('value');
+
+          data.push({
+            id: key,
+            detailDoctor: detailDoctor.val(),
+            ...oldData[key],
+          });
+        });
+
+        await Promise.all(promises);
+        setHistory(data);
+      }
+    });
+  }, [user.uid]);
+
+  const getDataUser = () => {
+    getData('user').then(res => {
+      setUser(res);
+    });
+  };
 
   return (
     <View style={styles.page}>
       <View style={styles.content}>
         <Text style={styles.title}>Messages</Text>
-        {doctors.map(doctor => {
+        {history.map(chat => {
+          const dataDoctor = {
+            id: chat.detailDoctor.uid,
+            data: chat.detailDoctor,
+          };
+
           return (
             <List
-              profile={doctor.profile}
-              name={doctor.name}
-              desc={doctor.desc}
-              key={doctor.id}
+              profile={{uri: chat.detailDoctor.photo}}
+              name={chat.detailDoctor.fullName}
+              desc={chat.lastContentChat}
+              key={chat.id}
               onPress={() => {
-                navigation.navigate('Chatting');
+                navigation.navigate('Chatting', dataDoctor);
               }}
             />
           );

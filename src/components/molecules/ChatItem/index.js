@@ -4,11 +4,11 @@ import {colors, fonts} from '../../../utils';
 import Other from './Other';
 import IsMe from './IsMe';
 
-const ChatItem = ({isMe}) => {
+const ChatItem = ({isMe, text, date, photo}) => {
   if (isMe) {
-    return <IsMe />;
+    return <IsMe text={text} date={date} />;
   }
-  return <Other />;
+  return <Other text={text} date={date} photo={photo} />;
 };
 
 export default ChatItem;
